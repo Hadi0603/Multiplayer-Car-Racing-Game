@@ -18,12 +18,12 @@ public class Controller : MonoBehaviour
     [SerializeField] float motorTorque;
     [SerializeField] float steeringMax;
     [SerializeField] float radius;
+    [SerializeField] float downForceValue;
+    [SerializeField] float brakePower;
+    [SerializeField] float[] slip = new float[4];
     public float KPH;
     private Rigidbody rigidbody;
-    private void Awake()
-    {
-        centerOfMass = transform.Find("CenterOfMass");
-    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +32,11 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        AddDownForce();
         AnimateWheels();
         MoveVehicle();
         SteerVehicle();
+        GetFriction();
     }
     void MoveVehicle()
     {
@@ -61,6 +63,14 @@ public class Controller : MonoBehaviour
             }
         }
         KPH = rigidbody.velocity.magnitude * 3.6f;
+        if (IM.handbrake)
+        {
+            wheels[2].brakeTorque = wheels[3].brakeTorque = brakePower;
+        }
+        else
+        {
+            wheels[2].brakeTorque = wheels[3].brakeTorque = 0;
+        }
     }
     void SteerVehicle()
     {
@@ -95,6 +105,20 @@ public class Controller : MonoBehaviour
     {
         IM = GetComponent<InputManager>();
         rigidbody = GetComponent<Rigidbody>();
+        centerOfMass = transform.Find("CenterOfMass");
         rigidbody.centerOfMass = centerOfMass.transform.localPosition;
+    }
+    void AddDownForce()
+    {
+        rigidbody.AddForce(-transform.up * downForceValue * rigidbody.velocity.magnitude);
+    }
+    void GetFriction()
+    {
+        for(int i = 0; i < wheels.Length; i++)
+        {
+            WheelHit wheelHit;
+            wheels[i].GetGroundHit(out wheelHit);
+            slip[i] = wheelHit.forwardSlip;
+        }
     }
 }
