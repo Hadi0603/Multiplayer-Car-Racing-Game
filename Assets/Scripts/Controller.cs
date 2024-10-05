@@ -16,6 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] GameObject[] wheelMesh = new GameObject[4];
     [SerializeField] float motorTorque;
     [SerializeField] float steeringMax;
+    [SerializeField] float radius;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +56,20 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void SteerVehicle()
     {
-        for (int i = 0; i < wheels.Length - 2; i++)
+        if (IM.horizontal > 0)
         {
-            wheels[i].steerAngle = IM.horizontal * steeringMax;
+            wheels[0].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * IM.horizontal;
+            wheels[1].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * IM.horizontal;
+        }
+        else if(IM.horizontal < 0)
+        {
+            wheels[0].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * IM.horizontal;
+            wheels[1].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * IM.horizontal;
+        }
+        else
+        {
+            wheels[0].steerAngle = 0;
+            wheels[1].steerAngle = 0;
         }
     }
     void AnimateWheels()
