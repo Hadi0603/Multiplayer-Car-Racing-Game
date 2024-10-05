@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    internal enum driveType
+    {
+        frontWheelDrive,
+        rearWheelDrive,
+        allWheelDrive
+    }
+    [SerializeField] driveType drive;
+    private InputManager IM;
     [SerializeField] WheelCollider[] wheels = new WheelCollider[4];
     [SerializeField] GameObject[] wheelMesh = new GameObject[4];
     [SerializeField] float motorTorque;
@@ -11,32 +19,45 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetObjects();
     }
 
     private void FixedUpdate()
     {
         AnimateWheels();
-        if (Input.GetKey(KeyCode.W))
+        MoveVehicle();
+        SteerVehicle();
+    }
+    void MoveVehicle()
+    {
+        float totalPower;
+        if (drive == driveType.allWheelDrive)
         {
-            for(int i=0; i<wheels.Length; i++)
+            for (int i = 0; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = motorTorque;
+                wheels[i].motorTorque = IM.vertical * (motorTorque / 4);
             }
         }
-        if (Input.GetAxis("Horizontal") != 0)
+        else if (drive == driveType.rearWheelDrive)
         {
-            for (int i = 0; i < wheels.Length - 2; i++)
+            for (int i = 2; i < wheels.Length; i++)
             {
-                wheels[i].steerAngle = Input.GetAxis("Horizontal") * steeringMax;
+                wheels[i].motorTorque = IM.vertical * (motorTorque / 2);
             }
         }
         else
         {
             for (int i = 0; i < wheels.Length - 2; i++)
             {
-                wheels[i].steerAngle = 0;
+                wheels[i].motorTorque = IM.vertical * (motorTorque / 2);
             }
+        }
+    }
+    void SteerVehicle()
+    {
+        for (int i = 0; i < wheels.Length - 2; i++)
+        {
+            wheels[i].steerAngle = IM.horizontal * steeringMax;
         }
     }
     void AnimateWheels()
@@ -49,5 +70,9 @@ public class NewBehaviourScript : MonoBehaviour
             wheelMesh[i].transform.position = wheelPosition;
             wheelMesh[i].transform.rotation = wheelRotation;
         }
+    }
+    void GetObjects()
+    {
+        IM = GetComponent<InputManager>();
     }
 }
