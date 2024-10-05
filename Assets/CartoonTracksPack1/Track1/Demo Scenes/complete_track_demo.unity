@@ -403,9 +403,11 @@ MonoBehaviour:
   - {fileID: 993611309}
   - {fileID: 185184366}
   centerOfMass: {fileID: 0}
-  motorTorque: 1500
-  steeringMax: 30
+  motorTorque: 1000
+  steeringMax: 20
   radius: 6
+  downForceValue: 500
+  brakePower: 10000000
   KPH: 0
 --- !u!4 &1113513351 stripped
 Transform:
