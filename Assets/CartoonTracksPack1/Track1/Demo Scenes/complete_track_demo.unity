@@ -365,7 +365,8 @@ MonoBehaviour:
   - {fileID: 993611309}
   - {fileID: 185184366}
   motorTorque: 1500
-  steeringMax: 30
+  steeringMax: 60
+  radius: 6
 --- !u!4 &1113513351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2792218741957914664, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
