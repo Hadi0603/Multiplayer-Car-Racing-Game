@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Controller : MonoBehaviour
 {
     internal enum driveType
     {
@@ -14,9 +14,16 @@ public class NewBehaviourScript : MonoBehaviour
     private InputManager IM;
     [SerializeField] WheelCollider[] wheels = new WheelCollider[4];
     [SerializeField] GameObject[] wheelMesh = new GameObject[4];
+    [SerializeField] Transform centerOfMass;
     [SerializeField] float motorTorque;
     [SerializeField] float steeringMax;
     [SerializeField] float radius;
+    public float KPH;
+    private Rigidbody rigidbody;
+    private void Awake()
+    {
+        centerOfMass = transform.Find("CenterOfMass");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +60,7 @@ public class NewBehaviourScript : MonoBehaviour
                 wheels[i].motorTorque = IM.vertical * (motorTorque / 2);
             }
         }
+        KPH = rigidbody.velocity.magnitude * 3.6f;
     }
     void SteerVehicle()
     {
@@ -86,5 +94,7 @@ public class NewBehaviourScript : MonoBehaviour
     void GetObjects()
     {
         IM = GetComponent<InputManager>();
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.centerOfMass = centerOfMass.transform.localPosition;
     }
 }
