@@ -12,8 +12,8 @@ public class Controller : MonoBehaviour
     }
     [SerializeField] driveType drive;
     private InputManager IM;
-    [SerializeField] GameObject wheelMeshes;
-    [SerializeField] GameObject wheelColliders;
+    private GameObject wheelMeshes;
+    private GameObject wheelColliders;
     private WheelCollider[] wheels = new WheelCollider[4];
     private GameObject[] wheelMesh = new GameObject[4];
     [SerializeField] Transform centerOfMass;
@@ -22,8 +22,8 @@ public class Controller : MonoBehaviour
     [SerializeField] float radius;
     [SerializeField] float downForceValue;
     [SerializeField] float brakePower;
-    [SerializeField] float[] slip = new float[4];
     public float KPH;
+    [SerializeField] float[] slip = new float[4];
     private Rigidbody rigidbody;
 
     // Start is called before the first frame update
