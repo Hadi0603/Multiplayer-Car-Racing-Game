@@ -12,8 +12,10 @@ public class Controller : MonoBehaviour
     }
     [SerializeField] driveType drive;
     private InputManager IM;
-    [SerializeField] WheelCollider[] wheels = new WheelCollider[4];
-    [SerializeField] GameObject[] wheelMesh = new GameObject[4];
+    [SerializeField] GameObject wheelMeshes;
+    [SerializeField] GameObject wheelColliders;
+    private WheelCollider[] wheels = new WheelCollider[4];
+    private GameObject[] wheelMesh = new GameObject[4];
     [SerializeField] Transform centerOfMass;
     [SerializeField] float motorTorque;
     [SerializeField] float steeringMax;
@@ -107,6 +109,16 @@ public class Controller : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         centerOfMass = transform.Find("CenterOfMass");
         rigidbody.centerOfMass = centerOfMass.transform.localPosition;
+        wheelColliders = GameObject.Find("WheelColliders");
+        wheelMeshes = GameObject.Find("WheelMeshes");
+        wheels[0] = wheelColliders.transform.Find("0").gameObject.GetComponent<WheelCollider>();
+        wheels[1] = wheelColliders.transform.Find("1").gameObject.GetComponent<WheelCollider>();
+        wheels[2] = wheelColliders.transform.Find("2").gameObject.GetComponent<WheelCollider>();
+        wheels[3] = wheelColliders.transform.Find("3").gameObject.GetComponent<WheelCollider>();
+        wheelMesh[0] = wheelMeshes.transform.Find("0").gameObject;
+        wheelMesh[1] = wheelMeshes.transform.Find("1").gameObject;
+        wheelMesh[2] = wheelMeshes.transform.Find("2").gameObject;
+        wheelMesh[3] = wheelMeshes.transform.Find("3").gameObject;
     }
     void AddDownForce()
     {
