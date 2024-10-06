@@ -122,16 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &44982489 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6708706858096201184, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &185184366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4163942240364048118, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &354533035
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,11 +230,6 @@ MonoBehaviour:
   player: {fileID: 0}
   child: {fileID: 0}
   speed: 10
---- !u!1 &499422254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 856612622373900327, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537422353
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,11 +261,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1113513351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &993611309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8288384950464101879, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1113513340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -359,26 +339,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3311311803080157842, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
   m_PrefabInstance: {fileID: 1113513340}
   m_PrefabAsset: {fileID: 0}
---- !u!146 &1113513342 stripped
-WheelCollider:
-  m_CorrespondingSourceObject: {fileID: 1057494946909100755, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &1113513343 stripped
-WheelCollider:
-  m_CorrespondingSourceObject: {fileID: 3145262460232535540, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &1113513344 stripped
-WheelCollider:
-  m_CorrespondingSourceObject: {fileID: 4795950753765878369, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &1113513345 stripped
-WheelCollider:
-  m_CorrespondingSourceObject: {fileID: 2716459193614891142, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
-  m_PrefabInstance: {fileID: 1113513340}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1113513346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,22 +352,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 1
-  wheels:
-  - {fileID: 1113513345}
-  - {fileID: 1113513344}
-  - {fileID: 1113513343}
-  - {fileID: 1113513342}
-  wheelMesh:
-  - {fileID: 44982489}
-  - {fileID: 499422254}
-  - {fileID: 993611309}
-  - {fileID: 185184366}
+  wheelMeshes: {fileID: 0}
+  wheelColliders: {fileID: 0}
   centerOfMass: {fileID: 0}
   motorTorque: 1000
-  steeringMax: 20
+  steeringMax: 25
   radius: 6
   downForceValue: 500
   brakePower: 10000000
+  slip:
+  - 0
+  - 0
+  - 0
+  - 0
   KPH: 0
 --- !u!4 &1113513351 stripped
 Transform:
