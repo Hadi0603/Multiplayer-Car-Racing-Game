@@ -229,7 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   child: {fileID: 0}
-  speed: 10
+  speed: 0
+  defaultFOV: 0
 --- !u!1 &537422353
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +314,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Free Racing Car
       objectReference: {fileID: 0}
+    - target: {fileID: 4261086428169357561, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261086428169357561, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7495443279060062592, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
       propertyPath: m_Mass
       value: 1000
@@ -351,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e23e8e41702534e988c105a59061b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drive: 1
+  drive: 2
   centerOfMass: {fileID: 0}
   motorTorque: 1000
   steeringMax: 25
@@ -409,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 1268546994}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.9, z: -5.1}
+  m_LocalPosition: {x: 0, y: 2.9, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
