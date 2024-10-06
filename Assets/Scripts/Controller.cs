@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
         rearWheelDrive,
         allWheelDrive
     }
+    [Header("Specs")]
     [SerializeField] driveType drive;
     private InputManager IM;
     private GameObject wheelMeshes;
@@ -23,6 +24,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float downForceValue;
     [SerializeField] float brakePower;
     public float KPH;
+    [Header("Debug")]
     [SerializeField] float[] slip = new float[4];
     private Rigidbody rigidbody;
 
