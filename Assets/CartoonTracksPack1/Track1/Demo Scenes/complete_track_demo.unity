@@ -167,7 +167,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 18.130024
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -182,7 +182,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 67
+  field of view: 70
   orthographic: 0
   orthographic size: 9.9
   m_Depth: -1
@@ -231,6 +231,8 @@ MonoBehaviour:
   child: {fileID: 0}
   speed: 0
   defaultFOV: 0
+  desiredFOV: 100
+  smoothTime: 5
 --- !u!1 &537422353
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,10 +365,10 @@ MonoBehaviour:
   drive: 2
   centerOfMass: {fileID: 0}
   motorTorque: 1000
-  steeringMax: 25
+  steeringMax: 35
   radius: 6
   downForceValue: 500
-  brakePower: 10000000
+  brakePower: 100000000
   KPH: 0
   slip:
   - 0
