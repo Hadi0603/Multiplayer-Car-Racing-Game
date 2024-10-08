@@ -23,6 +23,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float radius;
     [SerializeField] float downForceValue;
     [SerializeField] float brakePower;
+    [SerializeField] float thrust;
     public float KPH;
     [Header("Debug")]
     [SerializeField] float[] slip = new float[4];
@@ -74,6 +75,10 @@ public class Controller : MonoBehaviour
         else
         {
             wheels[2].brakeTorque = wheels[3].brakeTorque = 0;
+        }
+        if (IM.boosting)
+        {
+            rigidbody.AddForce(-Vector3.forward * thrust);
         }
     }
     void SteerVehicle()
