@@ -465,12 +465,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 2
+  enginePower:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   centerOfMass: {fileID: 0}
   motorTorque: 1000
-  steeringMax: 35
+  steeringMax: 40
   radius: 6
   downForceValue: 500
-  brakePower: 1e+11
+  brakePower: 1e+12
   thrust: 10000
   KPH: 0
   slip:
