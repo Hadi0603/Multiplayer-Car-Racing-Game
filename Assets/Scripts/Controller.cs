@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     }
     [Header("Specs")]
     [SerializeField] driveType drive;
+    [SerializeField] AnimationCurve enginePower;
     private InputManager IM;
     private GameObject wheelMeshes;
     private GameObject wheelColliders;
