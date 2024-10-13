@@ -12,11 +12,12 @@ public class Controller : MonoBehaviour
     }
     [Header("Specs")]
     [SerializeField] driveType drive;
+    public GameManager manager;
     [SerializeField] public float totalPower;
     [SerializeField] float engineRpm;
     [SerializeField] float smoothTime;
     [SerializeField] float[] gears;
-    [SerializeField] int gearNum;
+    [SerializeField] public int gearNum;
     [SerializeField] float wheelsRPM;
     [SerializeField] AnimationCurve enginePower;
     private InputManager IM;
@@ -73,11 +74,19 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            gearNum++;
+            if (gearNum < 4)
+            {
+                gearNum++;
+                manager.ChangeGear();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            gearNum--;
+            if (gearNum > 0)
+            {
+                gearNum--;
+                manager.ChangeGear();
+            }
         }
     }
     void MoveVehicle()
