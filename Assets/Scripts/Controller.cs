@@ -12,6 +12,12 @@ public class Controller : MonoBehaviour
     }
     [Header("Specs")]
     [SerializeField] driveType drive;
+    [SerializeField] public float totalPower;
+    [SerializeField] float engineRpm;
+    [SerializeField] float smoothTime;
+    [SerializeField] float[] gears;
+    [SerializeField] int gearNum;
+    [SerializeField] float wheelsRPM;
     [SerializeField] AnimationCurve enginePower;
     private InputManager IM;
     private GameObject wheelMeshes;
@@ -19,7 +25,6 @@ public class Controller : MonoBehaviour
     private WheelCollider[] wheels = new WheelCollider[4];
     private GameObject[] wheelMesh = new GameObject[4];
     [SerializeField] Transform centerOfMass;
-    [SerializeField] float motorTorque;
     [SerializeField] float steeringMax;
     [SerializeField] float radius;
     [SerializeField] float downForceValue;
@@ -43,29 +48,59 @@ public class Controller : MonoBehaviour
         MoveVehicle();
         SteerVehicle();
         GetFriction();
+        CalculateEnginePower();
+        Shifter();
+    }
+    void CalculateEnginePower()
+    {
+        WheelRPM();
+        totalPower = enginePower.Evaluate(engineRpm) * (gears[gearNum]) * IM.vertical;
+        float velocity = 0.0f;
+        engineRpm = Mathf.SmoothDamp(engineRpm, 1000 + (Mathf.Abs(wheelsRPM) * 3.6f * (gears[gearNum])), ref velocity, smoothTime);
+    }
+    void WheelRPM()
+    {
+        float sum = 0;
+        int R = 0;
+        for(int i = 0; i < 4; i++)
+        {
+            sum += wheels[i].rpm;
+            R++;
+        }
+        wheelsRPM = (R != 0) ? sum / R : 0;
+    }
+    void Shifter()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            gearNum++;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            gearNum--;
+        }
     }
     void MoveVehicle()
     {
-        float totalPower;
         if (drive == driveType.allWheelDrive)
         {
             for (int i = 0; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = IM.vertical * (motorTorque / 4);
+                wheels[i].motorTorque = totalPower / 4;
             }
         }
         else if (drive == driveType.rearWheelDrive)
         {
             for (int i = 2; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = IM.vertical * (motorTorque / 2);
+                wheels[i].motorTorque = totalPower / 2;
             }
         }
         else
         {
             for (int i = 0; i < wheels.Length - 2; i++)
             {
-                wheels[i].motorTorque = IM.vertical * (motorTorque / 2);
+                wheels[i].motorTorque = totalPower / 2;
             }
         }
         KPH = rigidbody.velocity.magnitude * 3.6f;
