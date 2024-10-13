@@ -79,7 +79,7 @@ public class Controller : MonoBehaviour
         }
         if (IM.boosting)
         {
-            rigidbody.AddForce(-Vector3.forward * thrust);
+            rigidbody.AddForce(transform.forward * thrust);
         }
     }
     void SteerVehicle()
