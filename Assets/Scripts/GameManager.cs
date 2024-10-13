@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeGear()
     {
-        gearNum.text = RR.gearNum.ToString();
+        gearNum.text = (!RR.reverse) ? (RR.gearNum + 1).ToString() : "R";
     }
 }
