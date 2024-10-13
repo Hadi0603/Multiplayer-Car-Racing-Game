@@ -21,6 +21,6 @@ public class GameManager : MonoBehaviour
     }
     void UpdateSpeed()
     {
-        speedo.text = vehicleSpeed.ToString();
+        speedo.text = vehicleSpeed.ToString("0");
     }
 }
