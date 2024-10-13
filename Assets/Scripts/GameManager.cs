@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Controller RR;
     [SerializeField] Text speedo;
+    [SerializeField] Text gearNum;
     [SerializeField] float vehicleSpeed;
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,9 @@ public class GameManager : MonoBehaviour
     void UpdateSpeed()
     {
         speedo.text = vehicleSpeed.ToString("0");
+    }
+    public void ChangeGear()
+    {
+        gearNum.text = RR.gearNum.ToString();
     }
 }
