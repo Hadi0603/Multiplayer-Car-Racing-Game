@@ -466,8 +466,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 1
+  gearChange: 1
   manager: {fileID: 1202425795}
   totalPower: 0
+  maxRPM: 5600
+  minRPM: 3000
   engineRpm: 0
   smoothTime: 0.01
   gears:
@@ -478,6 +481,7 @@ MonoBehaviour:
   - 0.4
   gearNum: 0
   wheelsRPM: 0
+  reverse: 0
   enginePower:
     serializedVersion: 2
     m_Curve:
@@ -688,11 +692,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 630205006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000030517578}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 439.99994, y: -270.12454}
   m_SizeDelta: {x: 400, y: 129.751}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591081197
 GameObject:
   m_ObjectHideFlags: 0
