@@ -494,7 +494,7 @@ MonoBehaviour:
   steeringMax: 60
   radius: 6
   downForceValue: 500
-  brakePower: 1e+12
+  brakePower: 1e+20
   thrust: 10000
   KPH: 0
   slip:
