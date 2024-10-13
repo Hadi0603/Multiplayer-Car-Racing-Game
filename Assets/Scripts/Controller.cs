@@ -12,13 +12,22 @@ public class Controller : MonoBehaviour
     }
     [Header("Specs")]
     [SerializeField] driveType drive;
+    internal enum gearBox
+    {
+        automatic,
+        manual
+    }
+    [SerializeField] private gearBox gearChange;
     public GameManager manager;
     [SerializeField] public float totalPower;
+    [SerializeField] float maxRPM;
+    [SerializeField] float minRPM;
     [SerializeField] float engineRpm;
     [SerializeField] float smoothTime;
     [SerializeField] float[] gears;
     [SerializeField] public int gearNum;
     [SerializeField] float wheelsRPM;
+    [SerializeField] public bool reverse;
     [SerializeField] AnimationCurve enginePower;
     private InputManager IM;
     private GameObject wheelMeshes;
@@ -69,24 +78,51 @@ public class Controller : MonoBehaviour
             R++;
         }
         wheelsRPM = (R != 0) ? sum / R : 0;
+        if (wheelsRPM < 0 && !reverse)
+        {
+            reverse = true;
+            manager.ChangeGear();
+        }
+        else if(wheelsRPM > 0 && reverse)
+        {
+            reverse = false;
+            manager.ChangeGear();
+        }
     }
     void Shifter()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!IsGrounded()) return;
+        if (gearChange == gearBox.automatic)
         {
-            if (gearNum < 4)
+            if (engineRpm > maxRPM && gearNum < gears.Length - 1 && !reverse)
             {
                 gearNum++;
                 manager.ChangeGear();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        else
         {
-            if (gearNum > 0)
+            if (Input.GetKeyDown(KeyCode.E) && gearNum < gears.Length - 1)
             {
-                gearNum--;
+                gearNum++;
                 manager.ChangeGear();
             }
+        }
+        if (engineRpm < minRPM && gearNum > 0)
+        {
+            gearNum--;
+            manager.ChangeGear();
+        }
+    }
+    bool IsGrounded()
+    {
+        if (wheels[0].isGrounded && wheels[1].isGrounded && wheels[2].isGrounded && wheels[3].isGrounded)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     void MoveVehicle()
