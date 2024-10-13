@@ -465,6 +465,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 1
+  totalPower: 0
+  engineRpm: 0
+  smoothTime: 0
+  gears: []
+  gearNum: 0
+  wheelsRPM: 0
   enginePower:
     serializedVersion: 2
     m_Curve:
