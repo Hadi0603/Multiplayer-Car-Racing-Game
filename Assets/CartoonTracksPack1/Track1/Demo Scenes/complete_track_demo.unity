@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e23e8e41702534e988c105a59061b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drive: 2
+  drive: 1
   enginePower:
     serializedVersion: 2
     m_Curve:
@@ -491,7 +491,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   centerOfMass: {fileID: 0}
   motorTorque: 1000
-  steeringMax: 40
+  steeringMax: 60
   radius: 6
   downForceValue: 500
   brakePower: 1e+12
