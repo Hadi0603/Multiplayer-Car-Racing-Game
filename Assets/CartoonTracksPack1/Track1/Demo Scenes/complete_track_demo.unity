@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 1
-  gearChange: 0
+  gearChange: 1
   manager: {fileID: 1202425795}
   totalPower: 0
   maxRPM: 5600
