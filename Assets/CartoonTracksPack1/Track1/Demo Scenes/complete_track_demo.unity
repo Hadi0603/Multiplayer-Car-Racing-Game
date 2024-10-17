@@ -466,8 +466,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 2
-  gearChange: 1
+  gearChange: 0
   manager: {fileID: 1202425795}
+  handBrakeFrictionMultiplier: 20
   totalPower: 0
   maxRPM: 5600
   minRPM: 3000
